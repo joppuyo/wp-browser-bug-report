@@ -4,9 +4,10 @@ use PHPUnit\Framework\Assert;
 
 class AcceptanceCest
 {
-    public function _before(AcceptanceTester $I)
+    public function iDoSetupBeforeRunningTests(AcceptanceTester $I)
     {
         $I->cli(['core', 'update-db']);
+        $I->cli(['theme ', 'activate', 'twentyseventeen']);
     }
 
     // tests
