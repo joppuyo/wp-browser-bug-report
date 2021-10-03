@@ -1,6 +1,8 @@
 name: Test
 
 on: [push]
+env:
+  plugin-slug: wp-browser-bug-report
 
 jobs:
   build:
@@ -78,7 +80,7 @@ jobs:
         run: >
           docker exec
           -w /var/www/html
-          disable-customizer_wordpress_1 bash
+          {{env.plugin-slug}}_wordpress_1 bash
           -c "sudo chown -R www-data:www-data /var/www/html && sudo chmod -R 775 /var/www/html"
           
       - name: Wait until the server is up
@@ -87,7 +89,7 @@ jobs:
       - name: Run test suite
         run: >
           docker exec
-          -w /var/www/html/wp-content/plugins/disable-customizer
+          -w /var/www/html/wp-content/plugins/{{env.plugin-slug}}
           -e WP_ROOT_FOLDER
           -e TEST_SITE_WP_ADMIN_PATH
           -e TEST_SITE_DB_NAME
@@ -101,7 +103,7 @@ jobs:
           -e TEST_SITE_ADMIN_EMAIL
           -e TEST_SITE_ADMIN_USERNAME
           -e TEST_SITE_ADMIN_PASSWORD
-          disable-customizer_wordpress_1 bash
+          {{env.plugin-slug}}_wordpress_1 bash
           -c './vendor/bin/codecept run acceptance --fail-fast --debug'
         env:
           WP_ROOT_FOLDER: /var/www/html
