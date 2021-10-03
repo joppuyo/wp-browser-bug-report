@@ -7,7 +7,7 @@ class AcceptanceCest
     public function iDoSetupBeforeRunningTests(AcceptanceTester $I)
     {
         $I->cli(['core', 'update-db']);
-        $I->cli(['theme ', 'activate', 'twentyseventeen']);
+        $I->cli(['theme ', 'install', 'twentyseventeen', '--activate']);
     }
 
     // tests
