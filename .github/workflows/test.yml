@@ -119,7 +119,7 @@ jobs:
           TEST_SITE_ADMIN_EMAIL: example@example.com
           TEST_SITE_ADMIN_USERNAME: admin
           TEST_SITE_ADMIN_PASSWORD: admin
-          TEST_SITE_DB_DSN: mysql:host=%TEST_SITE_DB_HOST%;dbname=%TEST_SITE_DB_NAME%'
+          TEST_SITE_DB_DSN: mysql:host=db;dbname=exampledb
 
       - name: Upload artifact
         if: failure()
