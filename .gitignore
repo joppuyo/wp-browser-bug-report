@@ -1,0 +1,4 @@
+/vendor
+/.env.testing
+/tests/_output/*
+!/tests/_output/.gitkeep
