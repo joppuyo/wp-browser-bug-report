@@ -76,6 +76,9 @@ jobs:
       - name: Check running containers
         run: docker ps -a
 
+      - name: Wait until the server is up
+        run: npx wait-on http://localhost/wp-login.php --verbose --timeout 60000
+
       - name: Fix permissions
         run: >
           docker exec
@@ -83,9 +86,6 @@ jobs:
           ${{env.plugin-slug}}_wordpress_1 bash
           -c "sudo chown -R www-data:www-data /var/www/html && sudo chmod -R 775 /var/www/html"
           
-      - name: Wait until the server is up
-        run: npx wait-on http://localhost/wp-login.php --verbose --timeout 60000
-
       - name: Run test suite
         run: >
           docker exec
