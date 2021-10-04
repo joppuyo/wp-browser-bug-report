@@ -19,4 +19,4 @@ extensions:
 params:
     - .env.testing
 settings:
-    error_level: E_ALL & ~E_STRICT & ~E_DEPRECATED & ~E_WARNING
+    error_level: E_ERROR
